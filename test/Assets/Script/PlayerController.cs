@@ -15,22 +15,39 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        // 矢印キーを押下している時
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        //キーを押しているとき
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            // 正面を向く（正面 * フレーム * 移動スピード）
-            transform.Translate(Vector3.forward * Time.deltaTime * Speed); 
+            this.transform.position += this.transform.forward * Speed * Time.deltaTime;
         }
-
-        // 矢印キーを押下している時に向きを変える
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
-            // 向きを指定(向きたい方向-今の位置)
-            transform.rotation = Quaternion.LookRotation(
-            transform.position +
-            (Vector3.right * Input.GetAxisRaw("Horizontal")) +
-            (Vector3.forward * Input.GetAxisRaw("Vertical"))
-            - transform.position);
+            this.transform.position -= this.transform.forward * Speed * Time.deltaTime;
         }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            this.transform.position += this.transform.right * Speed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            this.transform.position -= this.transform.right * Speed * Time.deltaTime;
+        }
+        //    // 矢印キーを押下している時
+        //    if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        //    {
+        //        // 正面を向く（正面 * フレーム * 移動スピード）
+        //        transform.Translate(Vector3.forward * Time.deltaTime * Speed); 
+        //    }
+        //
+        //    // 矢印キーを押下している時に向きを変える
+        //    if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        //    {
+        //        // 向きを指定(向きたい方向-今の位置)
+        //        transform.rotation = Quaternion.LookRotation(
+        //        transform.position +
+        //        (Vector3.right * Input.GetAxisRaw("Horizontal")) +
+        //        (Vector3.forward * Input.GetAxisRaw("Vertical"))
+        //        - transform.position);
+        //    }
     }
 }
